@@ -1,27 +1,28 @@
 local physics = require("physics")
 
-physics.start()
-
---physics.setDrawMode("hybrid")
---physics.setScale( 60 )
-physics.setGravity( 0, 0 )
 
 local propriedadeBola = { density=1, radius=15 }
 
 
 function criarNovoJogo()
-	
+
+	physics.start()
+
+	--physics.setDrawMode("hybrid")
+	--physics.setScale( 60 )
+	physics.setGravity( 0, 0 )
+
 	componentesBordas = display.newGroup()
-	
+
 	local mesa = display.newImage( "table1.png", true)
 	componentesBordas:insert(mesa)
 	mesa.x = 384
 	mesa.y = 512
-	
+
 	local fillTop = display.newImage( "fill_bkg.png", true )
 	componentesBordas:insert(fillTop)
 	fillTop.x = 384; fillTop.y = -93
-	
+
 	local fillBot = display.newImage( "fill_bkg.png", true )
 	componentesBordas:insert(fillBot)
 	fillBot.rotation=180; fillBot.x = 384; fillBot.y = 1117
@@ -32,13 +33,13 @@ function criarNovoJogo()
 	local physics_body = {}
 	physics_body["bumperCima"] = {
 		{
-		    density = 10, friction = 10, bounce = 0.15, 
+		    density = 10, friction = 10, bounce = 0.15,
 		    shape = {-194, 0, 194, 0, -208, -16, 208, -16}
 		}
 	}
 	physics_body["bumperLado"] = {
 		{
-		    density = 10, friction = 10, bounce = 0.15, 
+		    density = 10, friction = 10, bounce = 0.15,
 		    shape = {-16, 200, -16, -200, 3, -187, 3, 187}
 		}
 	}
@@ -89,7 +90,7 @@ function criarNovoJogo()
 	textoPontuacao2 = display.newText(Pontuacao2, 0, 0, native.systemFontBold, 50 )
 	textoPontuacao2:setTextColor( 255, 255, 255, 255 )
 	textoPontuacao2.x = 550; textoPontuacao2.y = 1150;
-	
+
   local displayTime = display.newText({
      text     = "Bola Vermelha",
      x        = 350,
@@ -112,9 +113,9 @@ function criarNovoJogo()
 end
 
 function incluirBolas()
-	
+
 	bolasJogo = display.newGroup()
-	
+
 	bolaBranca = display.newImage( "ball_white.png" )
 	bolasJogo:insert(bolaBranca)
 	physics.addBody( bolaBranca, propriedadeBola )
@@ -130,7 +131,7 @@ function incluirBolas()
 		--Creat Rotating target
 	target = display.newImage( "target.png" )
 	target.x = bolaBranca.x; target.y = bolaBranca.y; target.alpha = 0;
-	
+
 
 	local bolaVermelha = {}
 
@@ -142,7 +143,7 @@ function incluirBolas()
 		bolaVermelha1.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaVermelha1.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
 		bolaVermelha1:addEventListener( "postCollision", bolaVermelha1 )
-		bolaVermelha1.type = "bolaVermelha"
+		bolaVermelha1.type = "bolaOito"
 		bolaVermelha1.collision = onCollision
 		bolaVermelha1:addEventListener("collision", bolaBranca)
 		bolaVermelha1:addEventListener( "postCollision", bolaBranca )
@@ -163,7 +164,7 @@ function incluirBolas()
 		bolaVermelha3 = display.newImage("1.png")
 		bolasJogo:insert(bolaVermelha3)
 		physics.addBody(bolaVermelha3, propriedadeBola)
-		bolaVermelha3.x = 371 
+		bolaVermelha3.x = 371
 		bolaVermelha3.y = 90
 		bolaVermelha3.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaVermelha3.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -174,7 +175,7 @@ function incluirBolas()
 		bolaVermelha4 = display.newImage("1.png")
 		bolasJogo:insert(bolaVermelha4)
 		physics.addBody(bolaVermelha4, propriedadeBola)
-		bolaVermelha4.x = 405 
+		bolaVermelha4.x = 405
 		bolaVermelha4.y = 90
 		bolaVermelha4.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaVermelha4.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -185,7 +186,7 @@ function incluirBolas()
 		bolaVermelha5 = display.newImage("1.png")
 		bolasJogo:insert(bolaVermelha5)
 		physics.addBody(bolaVermelha5, propriedadeBola)
-		bolaVermelha5.x = 439 
+		bolaVermelha5.x = 439
 		bolaVermelha5.y = 90
 		bolaVermelha5.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaVermelha5.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -219,7 +220,7 @@ local bolaOito = {}
 		bolaOito8 = display.newImage("3.png")
 		bolasJogo:insert(bolaOito8)
 		physics.addBody(bolaOito8, propriedadeBola)
-		bolaOito8.x = 386 
+		bolaOito8.x = 386
 		bolaOito8.y = 117
 		bolaOito8.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaOito8.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -232,7 +233,7 @@ local bolaAzul = {}
 		bolaAzul9 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul9)
 		physics.addBody(bolaAzul9, propriedadeBola)
-		bolaAzul9.x = 420 
+		bolaAzul9.x = 420
 		bolaAzul9.y = 117
 		bolaAzul9.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul9.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -254,7 +255,7 @@ local bolaAzul = {}
 		bolaAzul11 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul11)
 		physics.addBody(bolaAzul11, propriedadeBola)
-		bolaAzul11.x = 371 
+		bolaAzul11.x = 371
 		bolaAzul11.y = 144
 		bolaAzul11.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul11.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -265,7 +266,7 @@ local bolaAzul = {}
 		bolaAzul12 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul12)
 		physics.addBody(bolaAzul12, propriedadeBola)
-		bolaAzul12.x = 405 
+		bolaAzul12.x = 405
 		bolaAzul12.y = 144
 		bolaAzul12.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul12.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -276,7 +277,7 @@ local bolaAzul = {}
 		bolaAzul13 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul13)
 		physics.addBody(bolaAzul13, propriedadeBola)
-		bolaAzul13.x = 352 
+		bolaAzul13.x = 352
 		bolaAzul13.y = 171
 		bolaAzul13.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul13.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -287,7 +288,7 @@ local bolaAzul = {}
 		bolaAzul14 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul14)
 		physics.addBody(bolaAzul14, propriedadeBola)
-		bolaAzul14.x = 386 
+		bolaAzul14.x = 386
 		bolaAzul14.y = 171
 		bolaAzul14.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul14.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -298,7 +299,7 @@ local bolaAzul = {}
 		bolaAzul15 = display.newImage("2.png")
 		bolasJogo:insert(bolaAzul15)
 		physics.addBody(bolaAzul15, propriedadeBola)
-		bolaAzul15.x = 371 
+		bolaAzul15.x = 371
 		bolaAzul15.y = 198
 		bolaAzul15.linearDamping = 0.3 -- atrito com a mesa para parar de se mover
 		bolaAzul15.angularDamping = 0.8 -- atrito com a mesa para parar de rodar
@@ -308,7 +309,7 @@ local bolaAzul = {}
 
 		bolaBranca:addEventListener( "touch", baterBola )
 		criarBuracos()
-	
+
 end
 
 
@@ -326,9 +327,9 @@ function colisaoBuraco( self, event )
 	local caiu = transition.to( event.other, { alpha=0, xScale=0.3, yScale=0.3, time=200 } )
 
 	local object = event.other
-	
+
 	event.other:setLinearVelocity( 0, 0 )
-		
+
 	if event.other.type == "bolaBranca" then
 		timer.performWithDelay( 50, resetbolaBranca )
 
@@ -343,13 +344,9 @@ function colisaoBuraco( self, event )
 		Pontuacao2 = Pontuacao2 + 1
 		textoPontuacao2.text = Pontuacao2
 		display.remove(event.other)
-	
-	elseif event.other.type == "bolaOito" then				
-		display.remove(bolaAzul)
-		display.remove(bolaVermelha)
-		display.remove(bolaOito)
-		display.remove(bolaBranca)
-		criarNovoJogo()
+
+	elseif event.other.type == "bolaOito" then
+		gameOver()
 
 	end
 
@@ -363,7 +360,7 @@ function criarBuracos()
 			local sensorRadius = 20
 			buraco1 = display.newCircle( 126, 38, sensorRadius )
 			componentesBordas:insert(buraco1)
-			
+
 			buraco1.isVisible = false
 			physics.addBody( buraco1, { radius=sensorRadius, isSensor=true } )
 			buraco1.id = "buraco"
@@ -373,7 +370,7 @@ function criarBuracos()
 
 			buraco2 = display.newCircle( 641, 38, sensorRadius )
 			componentesBordas:insert(buraco2)
-			
+
 			buraco2.isVisible = false
 			physics.addBody( buraco2, { radius=sensorRadius, isSensor=true } )
 			buraco2.id = "buraco"
@@ -429,12 +426,12 @@ function baterBola( event )
 
 	local t = event.target
 	local phase = event.phase
-	
-		
+
+
 	if "began" == phase then
 		display.getCurrentStage():setFocus( t )
 		t.isFocus = true
-		
+
 		-- Stop current cueball motion, if any
 		t:setLinearVelocity( 0, 0 )
 		t.angularVelocity = 0
@@ -445,16 +442,16 @@ function baterBola( event )
 		startRotation = function()
 			target.rotation = target.rotation + 4
 		end
-		
+
 		Runtime:addEventListener( "enterFrame", startRotation )
-		
+
 		local showTarget = transition.to( target, { alpha=0.4, xScale=0.4, yScale=0.4, time=200 } )
 		myLine = nil
 
 	elseif t.isFocus then
-		
+
 		if "moved" == phase then
-			
+
 			if ( myLine ) then
 				myLine.parent:remove( myLine ) -- erase previous line, if any
 			end
@@ -463,26 +460,71 @@ function baterBola( event )
 			myLine.width = 8
 
 		elseif "ended" == phase or "cancelled" == phase then
-		
+
 			display.getCurrentStage():setFocus( nil )
 			t.isFocus = false
-			
+
 			local stopRotation = function()
 				Runtime:removeEventListener( "enterFrame", startRotation )
 			end
-			
+
 			local hideTarget = transition.to( target, { alpha=0, xScale=1.0, yScale=1.0, time=200, onComplete=stopRotation } )
-			
+
 			if ( myLine ) then
 				myLine.parent:remove( myLine )
 			end
-			
-			t:applyForce( (t.x - event.x), (t.y - event.y), t.x, t.y )	
+
+			t:applyForce( (t.x - event.x), (t.y - event.y), t.x, t.y )
 		end
 	end
 
 	return true
 
+
+end
+
+--Displays game over screeen
+function gameOver()
+
+	gameOverGroup = display.newGroup()
+
+	local overSplash = display.newImage( "game_over.png", true )
+	gameOverGroup:insert(overSplash)
+	overSplash.alpha = 0
+	overSplash.x = display.contentWidth/2; overSplash.y = 600
+
+	local showGameOver = transition.to( overSplash, { alpha=0.9, xScale=1.0, yScale=1.0, time=1000 } )
+	bolaBranca:removeEventListener( "touch", baterBola )
+
+	local gameState = "gameOver"
+	restartMenu(gameState)
+
+end
+
+--In game restart menu
+function restartMenu(gameState)
+	menuGroup = display.newGroup()
+
+	local restartGameImage = display.newImage("newGameButton.png",true )
+	restartGameImage.x = display.contentWidth/2
+	restartGameImage.y = 800
+	restartGameImage.alpha = 0
+	local showGameOver2 = transition.to( restartGameImage, { alpha=1.0, xScale=1.0, yScale=1.0, time=1000 } )
+	menuGroup:insert(restartGameImage)
+	restartGameImage.state = gameState
+	restartGameImage:addEventListener('touch', restartGame)
+
+end
+
+--Restart Game
+function restartGame( event )
+	local gameState = event.target.state
+		gameOverGroup:removeSelf()
+		componentesBordas:removeSelf() -- Removes All Stage Objects
+		bolasJogo:removeSelf() --Removes Ball Objects
+		menuGroup:removeSelf() --Removes Menu Group Objects
+		timer.performWithDelay(1000, splash, 1) -- Calls splash screen
+		criarNovoJogo()
 
 end
 
